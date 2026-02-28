@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>塾のしゅくだい帳</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="しゅくだい帳">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="theme-color" content="#7c5cbf">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f3ff;
+  --paper: #ffffff;
+  --primary: #7c5cbf;
+  --primary-light: #a07de0;
+  --primary-pale: #ede5ff;
+  --accent-yellow: #ffcc00;
+  --accent-green: #4caf7d;
+  --accent-red: #ff5a5a;
+  --accent-blue: #4a90d9;
+  --text: #2d2540;
+  --text-mid: #6b5f80;
+  --text-light: #a89bbf;
+  --border: #e4daf5;
+  --shadow: rgba(124, 92, 191, 0.12);
+  --math-bg: #fff4e6; --math-border: #ffb347; --math-text: #c07000;
+  --jp-bg: #ffe6e6; --jp-border: #ff8080; --jp-text: #c03030;
+  --sci-bg: #e6fff0; --sci-border: #50c878; --sci-text: #207040;
+  --soc-bg: #e6f4ff; --soc-border: #60a0e0; --soc-text: #205090;
+  --other-bg: #f5f5f5; --other-border: #b0b0b0; --other-text: #606060;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', 'M PLUS Rounded 1c', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(124,92,191,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 100% 100%, rgba(74,144,217,0.1) 0%, transparent 60%);
+}
+
+/* ============ HEADER ============ */
+.app-header {
+  background: var(--primary);
+  color: white;
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 16px rgba(124,92,191,0.35);
+  position: sticky; top: 0; z-index: 100;
+}
+.app-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.3rem; font-weight: 800;
+  display: flex; align-items: center; gap: 8px;
+}
+.header-btns { display: flex; gap: 8px; }
+.icon-btn {
+  background: rgba(255,255,255,0.18);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: white; padding: 6px 12px;
+  border-radius: 20px; cursor: pointer;
+  font-size: 0.8rem; font-weight: 700; font-family: inherit;
+  transition: background 0.2s;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.3); }
+
+/* ============ WEEK NAV ============ */
+.week-nav {
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px 16px; gap: 12px;
+  background: var(--primary-pale);
+}
+.week-label {
+  font-weight: 800; font-size: 0.95rem; color: var(--primary);
+  min-width: 140px; text-align: center;
+}
+.week-btn {
+  background: white; border: 2px solid var(--primary-light);
+  color: var(--primary); width: 32px; height: 32px;
+  border-radius: 50%; cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.week-btn:hover { background: var(--primary); color: white; }
+
+/* ============ DAY TABS ============ */
+.day-strip {
+  display: flex; overflow-x: auto;
+  padding: 10px 12px 0;
+  gap: 6px; scrollbar-width: none;
+  background: var(--primary-pale);
+}
+.day-strip::-webkit-scrollbar { display: none; }
+.day-chip {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 14px 14px 0 0;
+  background: rgba(255,255,255,0.5);
+  border: 2px solid transparent;
+  color: var(--text-mid);
+  font-weight: 800; font-size: 0.88rem;
+  cursor: pointer; transition: all 0.18s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.day-chip:hover { background: rgba(255,255,255,0.8); }
+.day-chip.active {
+  background: white; border-color: var(--primary);
+  color: var(--primary); border-bottom-color: white;
+  position: relative; z-index: 2;
+}
+.day-chip.is-today .chip-day::after {
+  content: ''; display: block;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent-red);
+  position: absolute; top: -2px; right: -2px;
+}
+.day-chip .chip-day { position: relative; font-size: 1rem; }
+.day-chip .chip-prog {
+  font-size: 0.65rem; font-weight: 700; opacity: 0.75;
+  min-height: 0.9rem;
+}
+.day-chip.all-done .chip-day { color: var(--accent-green); }
+.day-chip.all-done .chip-prog { color: var(--accent-green); }
+
+/* ============ MAIN CARD ============ */
+.main-card {
+  background: white;
+  margin: 0 12px 12px;
+  border: 2px solid var(--primary);
+  border-radius: 0 12px 12px 12px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 6px 20px var(--shadow);
+}
+.card-top {
+  padding: 14px 16px 10px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1.5px solid var(--border);
+}
+.card-day-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.05rem; font-weight: 800; color: var(--primary);
+}
+.prog-badge {
+  padding: 3px 12px; border-radius: 20px;
+  background: var(--primary-pale);
+  color: var(--primary); font-weight: 800; font-size: 0.8rem;
+  transition: all 0.3s;
+}
+.prog-badge.done-all {
+  background: var(--accent-green); color: white;
+  animation: pop 0.3s ease;
+}
+@keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+/* ============ TASK LIST ============ */
+.task-list { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+
+.task-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.task-row:hover { transform: translateY(-1px); box-shadow: 0 3px 10px var(--shadow); }
+.task-row:active { transform: scale(0.97); }
+.task-row.done { background: #f0fff6; border-color: #a0ddb8; }
+.task-row.done .task-name { text-decoration: line-through; color: var(--text-light); }
+
+.subject-dot {
+  width: 32px; height: 32px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.dot-math     { background: var(--math-bg); }
+.dot-japanese { background: var(--jp-bg); }
+.dot-science  { background: var(--sci-bg); }
+.dot-social   { background: var(--soc-bg); }
+.dot-other    { background: var(--other-bg); }
+
+.task-body { flex: 1; overflow: hidden; }
+.task-name { font-size: 0.92rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.task-subj { font-size: 0.68rem; margin-top: 1px; font-weight: 600; }
+.subj-math     { color: var(--math-text); }
+.subj-japanese { color: var(--jp-text); }
+.subj-science  { color: var(--sci-text); }
+.subj-social   { color: var(--soc-text); }
+.subj-other    { color: var(--other-text); }
+
+.hanamaru-btn {
+  width: 40px; height: 40px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 2.5px solid var(--border);
+  background: white; font-size: 0; transition: all 0.25s;
+}
+.task-row.done .hanamaru-btn {
+  border-color: transparent; background: transparent;
+  font-size: 1.9rem;
+  animation: hanamaru-in 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes hanamaru-in {
+  0%{transform:scale(0) rotate(-30deg);opacity:0}
+  60%{transform:scale(1.25) rotate(8deg)}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+
+.del-btn {
+  background: none; border: none; color: #ccc;
+  font-size: 0.95rem; cursor: pointer; padding: 4px 2px;
+  flex-shrink: 0; border-radius: 6px; line-height: 1;
+  transition: color 0.15s;
+}
+.del-btn:hover { color: var(--accent-red); }
+
+/* ============ ADD FORM ============ */
+.add-form {
+  padding: 10px 12px 14px;
+  border-top: 1.5px dashed var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.add-row { display: flex; gap: 7px; }
+.add-input {
+  flex: 1; padding: 9px 13px;
+  border-radius: 10px; border: 2px dashed var(--border);
+  font-family: inherit; font-size: 0.88rem; outline: none;
+  background: var(--bg); color: var(--text);
+  transition: border-color 0.2s;
+}
+.add-input:focus { border-color: var(--primary); border-style: solid; }
+.add-input::placeholder { color: var(--text-light); }
+.add-select {
+  padding: 9px 10px; border-radius: 10px;
+  border: 2px dashed var(--border);
+  background: var(--bg); font-family: inherit; font-size: 0.82rem;
+  outline: none; cursor: pointer; color: var(--text);
+  transition: border-color 0.2s;
+}
+.add-select:focus { border-color: var(--primary); border-style: solid; }
+.add-btn {
+  padding: 9px 16px; background: var(--primary); color: white;
+  border: none; border-radius: 10px;
+  font-family: inherit; font-weight: 800; font-size: 1.15rem;
+  cursor: pointer; flex-shrink: 0;
+  box-shadow: 0 3px 0 rgba(100,60,160,0.3);
+  transition: all 0.15s;
+}
+.add-btn:hover { background: var(--primary-light); transform: translateY(-1px); }
+.add-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(100,60,160,0.3); }
+
+.template-hint {
+  font-size: 0.72rem; color: var(--text-light);
+  text-align: right; padding-right: 2px;
+}
+.template-hint button {
+  background: none; border: none; color: var(--primary);
+  font-family: inherit; font-size: 0.72rem; font-weight: 700;
+  cursor: pointer; text-decoration: underline;
+}
+
+/* ============ EMPTY ============ */
+.empty-state {
+  padding: 36px 20px; text-align: center; color: var(--text-light);
+}
+.empty-state .big { font-size: 2.8rem; }
+.empty-state p { font-size: 0.85rem; margin-top: 6px; line-height: 1.6; }
+
+/* ============ ALL DONE BANNER ============ */
+.alldone-banner {
+  padding: 18px; text-align: center;
+  animation: fadeSlide 0.4s ease;
+}
+.alldone-banner .big { font-size: 3.5rem; animation: spin-in 0.5s ease; }
+.alldone-banner p {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 800; font-size: 1.1rem; color: var(--accent-green);
+  margin-top: 6px;
+}
+@keyframes spin-in { 0%{transform:scale(0) rotate(-180deg)} 80%{transform:scale(1.15) rotate(10deg)} 100%{transform:scale(1) rotate(0)} }
+@keyframes fadeSlide { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ============ MODAL ============ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(30,20,50,0.5); z-index: 200;
+  align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.modal-overlay.show { display: flex; }
+.modal-sheet {
+  background: white; width: 100%; max-width: 500px;
+  border-radius: 24px 24px 0 0;
+  padding: 20px 20px 32px;
+  max-height: 90vh; overflow-y: auto;
+  animation: slide-up 0.3s cubic-bezier(0.34,1.4,0.64,1);
+}
+@keyframes slide-up { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.modal-handle {
+  width: 40px; height: 4px; border-radius: 2px;
+  background: var(--border); margin: 0 auto 16px;
+}
+.modal-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.1rem; font-weight: 800; color: var(--primary);
+  margin-bottom: 14px;
+}
+.modal-section { margin-bottom: 16px; }
+.modal-section-label {
+  font-size: 0.8rem; font-weight: 700; color: var(--text-mid);
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.template-grid { display: flex; flex-direction: column; gap: 6px; }
+.template-row {
+  display: flex; gap: 8px; align-items: center;
+}
+.template-row input[type="text"] {
+  flex: 1; padding: 8px 11px; border-radius: 9px;
+  border: 1.5px solid var(--border); font-family: inherit;
+  font-size: 0.88rem; outline: none; background: var(--bg);
+}
+.template-row input:focus { border-color: var(--primary); }
+.template-row select {
+  padding: 8px 8px; border-radius: 9px;
+  border: 1.5px solid var(--border);
+  background: var(--bg); font-family: inherit; font-size: 0.82rem;
+  outline: none; cursor: pointer;
+}
+.template-add-row {
+  display: flex; gap: 7px; margin-top: 8px;
+}
+.template-add-row input { flex: 1; padding: 8px 11px; border-radius: 9px; border: 2px dashed var(--border); font-family: inherit; font-size: 0.88rem; outline: none; background: var(--bg); }
+.template-add-row input:focus { border-color: var(--primary); border-style: solid; }
+.template-add-row select { padding: 8px; border-radius: 9px; border: 2px dashed var(--border); background: var(--bg); font-family: inherit; font-size: 0.82rem; outline: none; cursor: pointer; }
+.small-btn {
+  padding: 6px 14px; border-radius: 9px;
+  font-family: inherit; font-weight: 700; font-size: 0.8rem;
+  cursor: pointer; border: 2px solid; transition: all 0.15s;
+}
+.btn-primary { background: var(--primary); color: white; border-color: var(--primary); }
+.btn-primary:hover { background: var(--primary-light); border-color: var(--primary-light); }
+.btn-ghost { background: white; color: var(--primary); border-color: var(--primary); }
+.btn-ghost:hover { background: var(--primary-pale); }
+.btn-danger { background: white; color: var(--accent-red); border-color: var(--accent-red); }
+.btn-danger:hover { background: #fff0f0; }
+.modal-footer { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+.day-header-sm {
+  font-size: 0.8rem; font-weight: 800; color: var(--primary);
+  padding: 6px 0 2px; border-bottom: 1px solid var(--border); margin-bottom: 6px;
+}
+.template-item-del {
+  background: none; border: none; color: #ccc;
+  font-size: 0.9rem; cursor: pointer; padding: 4px;
+  flex-shrink: 0; transition: color 0.15s;
+}
+.template-item-del:hover { color: var(--accent-red); }
+
+/* ============ CONFETTI ============ */
+.confetti-layer { position: fixed; inset: 0; pointer-events: none; z-index: 999; overflow: hidden; }
+.cp { position: absolute; top: -24px; font-size: 1.4rem; animation: fall-c linear forwards; }
+@keyframes fall-c {
+  0%{transform:translateY(0) rotate(0deg);opacity:1}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+
+/* ============ PIN MODAL ============ */
+.pin-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(30,20,50,0.6); z-index: 300;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.pin-overlay.show { display: flex; }
+.pin-card {
+  background: white; border-radius: 24px;
+  padding: 28px 24px 24px;
+  width: 300px; max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(124,92,191,0.3);
+  animation: pin-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  text-align: center;
+}
+@keyframes pin-in { from{transform:scale(0.8);opacity:0} to{transform:scale(1);opacity:1} }
+.pin-icon { font-size: 2.2rem; margin-bottom: 6px; }
+.pin-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1rem; font-weight: 800; color: var(--primary);
+  margin-bottom: 4px;
+}
+.pin-sub { font-size: 0.75rem; color: var(--text-light); margin-bottom: 18px; }
+.pin-dots {
+  display: flex; justify-content: center; gap: 12px; margin-bottom: 20px;
+}
+.pin-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2.5px solid var(--border); background: white;
+  transition: all 0.15s;
+}
+.pin-dot.filled { background: var(--primary); border-color: var(--primary); }
+.pin-dot.error { background: var(--accent-red); border-color: var(--accent-red); animation: shake 0.4s ease; }
+@keyframes shake {
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}
+  80%{transform:translateX(4px)}
+}
+.pin-keypad {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.pin-key {
+  padding: 14px; border-radius: 14px;
+  border: 2px solid var(--border); background: var(--bg);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.2rem; font-weight: 800; color: var(--text);
+  cursor: pointer; transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pin-key:hover { background: var(--primary-pale); border-color: var(--primary-light); }
+.pin-key:active { transform: scale(0.93); background: var(--primary); color: white; }
+.pin-key.del { color: var(--accent-red); border-color: #ffd0d0; background: #fff5f5; font-size: 1rem; }
+.pin-key.del:hover { background: #ffe0e0; }
+.pin-key.cancel-key { color: var(--text-mid); font-size: 0.85rem; }
+.pin-error-msg {
+  font-size: 0.78rem; color: var(--accent-red); font-weight: 700;
+  min-height: 1.2em; margin-top: 10px;
+}
+.pin-change-area {
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-size: 0.72rem; color: var(--text-light);
+}
+.pin-change-area button {
+  background: none; border: none; color: var(--primary);
+  font-family: inherit; font-size: 0.72rem; font-weight: 700;
+  cursor: pointer; text-decoration: underline;
+}
+
+
+
+/* ============ CALENDAR VIEW ============ */
+.cal-btn-wrap {
+  display: flex; justify-content: flex-end;
+  padding: 0 12px 8px;
+}
+.cal-toggle-btn {
+  background: white; border: 2px solid var(--primary);
+  color: var(--primary); padding: 6px 16px;
+  border-radius: 20px; font-family: inherit;
+  font-size: 0.82rem; font-weight: 800; cursor: pointer;
+  transition: all 0.2s;
+}
+.cal-toggle-btn:hover { background: var(--primary-pale); }
+
+.cal-modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(30,20,50,0.5); z-index: 200;
+  align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.cal-modal-overlay.show { display: flex; }
+.cal-sheet {
+  background: white; width: 100%; max-width: 500px;
+  border-radius: 24px 24px 0 0;
+  padding: 20px 16px 32px;
+  max-height: 88vh; overflow-y: auto;
+  animation: slide-up 0.3s cubic-bezier(0.34,1.4,0.64,1);
+}
+.cal-handle {
+  width: 40px; height: 4px; border-radius: 2px;
+  background: var(--border); margin: 0 auto 14px;
+}
+.cal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.1rem; font-weight: 800; color: var(--primary);
+}
+.cal-nav { display: flex; gap: 6px; }
+.cal-nav-btn {
+  background: var(--primary-pale); border: none;
+  color: var(--primary); width: 30px; height: 30px;
+  border-radius: 50%; cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.cal-nav-btn:hover { background: var(--primary); color: white; }
+
+.cal-weekdays {
+  display: grid; grid-template-columns: repeat(7,1fr);
+  margin-bottom: 4px;
+}
+.cal-wd {
+  text-align: center; font-size: 0.7rem; font-weight: 800;
+  color: var(--text-light); padding: 4px 0;
+}
+.cal-wd.sun { color: #ff5a5a; }
+.cal-wd.sat { color: #4a90d9; }
+
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7,1fr);
+  gap: 3px;
+}
+.cal-cell {
+  aspect-ratio: 1; border-radius: 10px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700;
+  color: var(--text-mid); position: relative;
+  cursor: default; transition: background 0.15s;
+  padding: 2px;
+}
+.cal-cell.empty { background: transparent; }
+.cal-cell.has-tasks { cursor: pointer; }
+.cal-cell.has-tasks:hover { background: var(--primary-pale); }
+.cal-cell.today-cell {
+  background: var(--primary-pale);
+  color: var(--primary);
+  font-weight: 900;
+}
+.cal-cell.today-cell::after {
+  content: ''; position: absolute; bottom: 3px;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--primary);
+}
+.cal-cell.full-done { background: #e8faf0; }
+.cal-cell.partial-done { background: #fef9e7; }
+.cal-cell .cal-day-num { line-height: 1; }
+.cal-cell .cal-mark {
+  font-size: 1rem; line-height: 1; margin-top: 1px;
+}
+.cal-cell.sun-cell .cal-day-num { color: #ff5a5a; }
+.cal-cell.sat-cell .cal-day-num { color: #4a90d9; }
+
+.cal-legend {
+  display: flex; gap: 12px; justify-content: center;
+  margin-top: 14px; flex-wrap: wrap;
+}
+.cal-legend-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.72rem; color: var(--text-mid); font-weight: 600;
+}
+.cal-legend-dot {
+  width: 12px; height: 12px; border-radius: 4px;
+}
+
+.cal-month-stats {
+  margin-top: 14px; padding: 12px 14px;
+  background: var(--primary-pale); border-radius: 14px;
+  text-align: center;
+}
+.cal-month-stats .stat-num {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.5rem; font-weight: 800; color: var(--primary);
+}
+.cal-month-stats .stat-label {
+  font-size: 0.75rem; color: var(--text-mid); margin-top: 2px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="confetti-layer" id="confettiLayer"></div>
+
+<!-- HEADER -->
+<div class="app-header">
+  <div class="app-title">📚 しゅくだい帳</div>
+  <div class="header-btns">
+    <button class="icon-btn" onclick="openPinModal(function(){openTemplateModal();})">⚙️ テンプレ</button>
+    <button class="icon-btn" onclick="openPinModal(function(){loadTemplateToWeek();})">📋 テンプレ読込</button>
+  </div>
+</div>
+
+<!-- WEEK NAV -->
+<div class="week-nav">
+  <button class="week-btn" onclick="changeWeek(-1)">‹</button>
+  <div class="week-label" id="weekLabel"></div>
+  <button class="week-btn" onclick="changeWeek(1)">›</button>
+</div>
+
+
+
+<!-- CALENDAR BUTTON -->
+<div class="cal-btn-wrap">
+  <button class="cal-toggle-btn" onclick="openCalModal()">📅 カレンダー</button>
+</div>
+
+<!-- CALENDAR MODAL -->
+<div class="cal-modal-overlay" id="calModal" onclick="calCloseIfOverlay(event)">
+  <div class="cal-sheet">
+    <div class="cal-handle"></div>
+    <div class="cal-header">
+      <div class="cal-title" id="calTitle"></div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calChangeMonth(-1)">‹</button>
+        <button class="cal-nav-btn" onclick="calChangeMonth(1)">›</button>
+      </div>
+    </div>
+    <div class="cal-weekdays">
+      <div class="cal-wd sun">日</div>
+      <div class="cal-wd">月</div>
+      <div class="cal-wd">火</div>
+      <div class="cal-wd">水</div>
+      <div class="cal-wd">木</div>
+      <div class="cal-wd">金</div>
+      <div class="cal-wd sat">土</div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-legend">
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#e8faf0;border:1.5px solid #4caf7d"></div>全部完了</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#fef9e7;border:1.5px solid #ffcc00"></div>途中</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--border)"></div>宿題なし</div>
+    </div>
+    <div class="cal-month-stats" id="calMonthStats"></div>
+  </div>
+</div>
+
+<!-- DAY TABS -->
+<div class="day-strip" id="dayStrip"></div>
+
+<!-- MAIN CARD -->
+<div class="main-card">
+  <div class="card-top">
+    <div class="card-day-title" id="cardDayTitle"></div>
+    <div class="prog-badge" id="progBadge">0/0</div>
+  </div>
+  <div class="task-list" id="taskList"></div>
+  <div class="add-form">
+    <div class="add-row">
+      <select class="add-select" id="addSubj">
+        <option value="math">算数</option>
+        <option value="japanese">国語</option>
+        <option value="science">理科</option>
+        <option value="social">社会</option>
+        <option value="other">その他</option>
+      </select>
+      <input class="add-input" id="addText" type="text" placeholder="宿題の内容を入力...">
+      <button class="add-btn" onclick="addTask()">＋</button>
+    </div>
+    <div class="template-hint">
+      固定の宿題は <button onclick="openPinModal(function(){openTemplateModal();})">テンプレート</button> に登録しよう
+    </div>
+  </div>
+</div>
+
+<!-- PIN MODAL -->
+<div class="pin-overlay" id="pinModal">
+  <div class="pin-card">
+    <div class="pin-icon">🔒</div>
+    <div class="pin-title" id="pinTitle">保護者用パスワード</div>
+    <div class="pin-sub" id="pinSub">4桁の暗証番号を入力してね</div>
+    <div class="pin-dots" id="pinDots">
+      <div class="pin-dot" id="pd0"></div>
+      <div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div>
+      <div class="pin-dot" id="pd3"></div>
+    </div>
+    <div class="pin-keypad">
+      <button class="pin-key" onclick="pinInput('1')">1</button>
+      <button class="pin-key" onclick="pinInput('2')">2</button>
+      <button class="pin-key" onclick="pinInput('3')">3</button>
+      <button class="pin-key" onclick="pinInput('4')">4</button>
+      <button class="pin-key" onclick="pinInput('5')">5</button>
+      <button class="pin-key" onclick="pinInput('6')">6</button>
+      <button class="pin-key" onclick="pinInput('7')">7</button>
+      <button class="pin-key" onclick="pinInput('8')">8</button>
+      <button class="pin-key" onclick="pinInput('9')">9</button>
+      <button class="pin-key cancel-key" onclick="closePinModal()">キャンセル</button>
+      <button class="pin-key" onclick="pinInput('0')">0</button>
+      <button class="pin-key del" onclick="pinDelete()">⌫ 消す</button>
+    </div>
+    <div class="pin-error-msg" id="pinError"></div>
+    <div class="pin-change-area">
+      暗証番号を変更したい場合は <button onclick="startChangePin()">こちら</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEMPLATE MODAL -->
+<div class="modal-overlay" id="templateModal" onclick="closeIfOverlay(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⚙️ テンプレート管理</div>
+    <div id="templateEditor"></div>
+    <div class="modal-footer">
+      <button class="small-btn btn-ghost" onclick="closeTemplateModal()">閉じる</button>
+      <button class="small-btn btn-primary" onclick="saveTemplate()">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== CONSTANTS =====
+const DAYS = ['月','火','水','木','金','土','日'];
+const DAY_NAMES_FULL = ['月曜日','火曜日','水曜日','木曜日','金曜日','土曜日','日曜日'];
+const JS_TO_IDX = [6,0,1,2,3,4,5]; // JS: 0=Sun → idx 6
+
+const SUBJ = {
+  math:     { label:'算数', icon:'🔢', dot:'dot-math',     tag:'subj-math' },
+  japanese: { label:'国語',       icon:'📖', dot:'dot-japanese', tag:'subj-japanese' },
+  science:  { label:'理科',       icon:'🔬', dot:'dot-science',  tag:'subj-science' },
+  social:   { label:'社会',       icon:'🗾', dot:'dot-social',   tag:'subj-social' },
+  other:    { label:'その他',      icon:'📝', dot:'dot-other',    tag:'subj-other' },
+};
+const HANAMARU = ['💮','🌸','⭐','🌟','✨','🎉','🌼','🌺'];
+
+// ===== STATE =====
+let weekOffset = 0;     // 0 = current week
+let currentDay = JS_TO_IDX[new Date().getDay()];
+let nextId = 1;
+
+// data[weekKey][dayIdx] = [{id, text, subject, done}]
+// template[dayIdx] = [{text, subject}]
+function getWeekKey(offset) {
+  const d = new Date();
+  d.setDate(d.getDate() - JS_TO_IDX[d.getDay()] + offset * 7); // Monday of week
+  return `w${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function loadState() {
+  const raw = localStorage.getItem('juku_v2');
+  if (raw) {
+    const s = JSON.parse(raw);
+    nextId = s.nextId || 1;
+    // normalize template keys to numbers
+    const tmplRaw = s.template || defaultTemplate();
+    const template = {};
+    for (let i = 0; i < 7; i++) {
+      template[i] = Array.isArray(tmplRaw[i]) ? tmplRaw[i] : (Array.isArray(tmplRaw[String(i)]) ? tmplRaw[String(i)] : []);
+    }
+    return { data: s.data || {}, template };
+  }
+  return { data: {}, template: defaultTemplate() };
+}
+
+function defaultTemplate() {
+  return {
+    0: [{text:'計算ドリル', subject:'math'}, {text:'漢字練習', subject:'japanese'}],
+    1: [{text:'国語プリント', subject:'japanese'}],
+    2: [{text:'算数プリント', subject:'math'}, {text:'理科ワーク', subject:'science'}],
+    3: [],
+    4: [{text:'社会ワーク', subject:'social'}],
+    5: [],
+    6: [],
+  };
+}
+
+let state = loadState();
+function save() {
+  localStorage.setItem('juku_v2', JSON.stringify({ data: state.data, template: state.template, nextId }));
+}
+
+function getWeekData() {
+  const key = getWeekKey(weekOffset);
+  if (!state.data[key]) state.data[key] = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
+  return state.data[key];
+}
+
+function getCurrentTasks() {
+  return getWeekData()[currentDay] || [];
+}
+
+// ===== WEEK LABEL =====
+function renderWeekLabel() {
+  const key = getWeekKey(weekOffset);
+  const d = new Date();
+  d.setDate(d.getDate() - JS_TO_IDX[d.getDay()] + weekOffset * 7);
+  const mon = new Date(d);
+  const sun = new Date(d); sun.setDate(sun.getDate() + 6);
+  const fmt = x => `${x.getMonth()+1}/${x.getDate()}`;
+  const label = weekOffset === 0 ? `今週 (${fmt(mon)}〜${fmt(sun)})` :
+                weekOffset === -1 ? `先週 (${fmt(mon)}〜${fmt(sun)})` :
+                weekOffset === 1 ? `来週 (${fmt(mon)}〜${fmt(sun)})` :
+                `${fmt(mon)}〜${fmt(sun)}`;
+  document.getElementById('weekLabel').textContent = label;
+}
+
+// ===== TABS =====
+function renderTabs() {
+  const strip = document.getElementById('dayStrip');
+  const todayIdx = JS_TO_IDX[new Date().getDay()];
+  const wd = getWeekData();
+  strip.innerHTML = '';
+  DAYS.forEach((d, i) => {
+    const tasks = wd[i] || [];
+    const done = tasks.filter(t=>t.done).length;
+    const total = tasks.length;
+    const chip = document.createElement('div');
+    chip.className = 'day-chip'
+      + (i === currentDay ? ' active' : '')
+      + (i === todayIdx && weekOffset === 0 ? ' is-today' : '')
+      + (total > 0 && done === total ? ' all-done' : '');
+    chip.innerHTML = `<span class="chip-day">${d}</span><span class="chip-prog">${total > 0 ? done+'/'+total : '　'}</span>`;
+    chip.onclick = () => { currentDay = i; renderTabs(); renderList(); };
+    strip.appendChild(chip);
+  });
+}
+
+// ===== TASK LIST =====
+function renderList() {
+  const tasks = getCurrentTasks();
+  const done = tasks.filter(t=>t.done).length;
+  const total = tasks.length;
+
+  document.getElementById('cardDayTitle').textContent = DAY_NAMES_FULL[currentDay] + 'の宿題';
+  const badge = document.getElementById('progBadge');
+  badge.textContent = `${done}/${total}`;
+  badge.className = 'prog-badge' + (total > 0 && done === total ? ' done-all' : '');
+
+  const list = document.getElementById('taskList');
+  list.innerHTML = '';
+
+  if (tasks.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="big">🌈</div><p>宿題がありません！<br>下から追加するか、<br>「テンプレ読込」を使おう</p></div>`;
+    return;
+  }
+
+  tasks.forEach(task => {
+    const s = SUBJ[task.subject] || SUBJ.other;
+    const row = document.createElement('div');
+    row.className = 'task-row' + (task.done ? ' done' : '');
+    row.innerHTML = `
+      <div class="subject-dot ${s.dot}">${s.icon}</div>
+      <div class="task-body">
+        <div class="task-name">${esc(task.text)}</div>
+        <div class="task-subj ${s.tag}">${s.label}</div>
+      </div>
+      <div class="hanamaru-btn">${task.done ? pickHanamaru(task.id) : ''}</div>
+      <button class="del-btn" onclick="delTask(event,${task.id})">✕</button>
+    `;
+    row.addEventListener('click', e => { if (e.target.classList.contains('del-btn')) return; toggleTask(task.id); });
+    list.appendChild(row);
+  });
+
+  if (total > 0 && done === total) {
+    const banner = document.createElement('div');
+    banner.className = 'alldone-banner';
+    banner.innerHTML = `<div class="big">💮</div><p>全部できた！すごい！！</p>`;
+    list.appendChild(banner);
+  }
+}
+
+function pickHanamaru(id) { return HANAMARU[id % HANAMARU.length]; }
+
+function toggleTask(id) {
+  const tasks = getCurrentTasks();
+  const t = tasks.find(t=>t.id===id);
+  if (!t) return;
+  t.done = !t.done;
+  save();
+  renderTabs();
+  renderList();
+  const done = tasks.filter(t=>t.done).length;
+  if (t.done && done === tasks.length) confetti();
+}
+
+function delTask(e, id) {
+  e.stopPropagation();
+  const wd = getWeekData();
+  wd[currentDay] = wd[currentDay].filter(t=>t.id!==id);
+  save(); renderTabs(); renderList();
+}
+
+function addTask() {
+  const input = document.getElementById('addText');
+  const text = input.value.trim();
+  if (!text) { input.focus(); return; }
+  const subj = document.getElementById('addSubj').value;
+  const wd = getWeekData();
+  wd[currentDay].push({ id: nextId++, text, subject: subj, done: false });
+  save(); input.value = ''; renderTabs(); renderList();
+}
+document.getElementById('addText').addEventListener('keydown', e => { if(e.key==='Enter') addTask(); });
+
+// ===== WEEK NAV =====
+function changeWeek(dir) {
+  weekOffset += dir;
+  renderWeekLabel(); renderTabs(); renderList();
+}
+
+// ===== TEMPLATE MODAL =====
+let tempEditState = {}; // temp copy while editing
+
+function openTemplateModal() {
+  // deep copy template to edit, ensure numeric keys
+  const raw = JSON.parse(JSON.stringify(state.template));
+  tempEditState = {};
+  for (let i = 0; i < 7; i++) {
+    tempEditState[i] = Array.isArray(raw[i]) ? raw[i] : (Array.isArray(raw[String(i)]) ? raw[String(i)] : []);
+  }
+  renderTemplateEditor();
+  document.getElementById('templateModal').classList.add('show');
+}
+function closeTemplateModal() {
+  document.getElementById('templateModal').classList.remove('show');
+}
+function closeIfOverlay(e) {
+  if (e.target === document.getElementById('templateModal')) closeTemplateModal();
+}
+function saveTemplate() {
+  state.template = JSON.parse(JSON.stringify(tempEditState));
+  save(); closeTemplateModal();
+}
+
+function renderTemplateEditor() {
+  const ed = document.getElementById('templateEditor');
+  ed.innerHTML = '';
+
+  // Info
+  const info = document.createElement('p');
+  info.style.cssText = 'font-size:0.78rem;color:var(--text-mid);margin-bottom:14px;line-height:1.5;';
+  info.textContent = '毎週くり返す宿題をここに登録してね。「テンプレ読込」ボタンで今週に一括コピーできるよ。';
+  ed.appendChild(info);
+
+  DAYS.forEach((day, di) => {
+    const section = document.createElement('div');
+    section.className = 'modal-section';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'day-header-sm';
+    hdr.textContent = DAY_NAMES_FULL[di];
+    section.appendChild(hdr);
+
+    const grid = document.createElement('div');
+    grid.className = 'template-grid';
+    grid.id = `tgrid_${di}`;
+
+    (tempEditState[di] || []).forEach((item, ii) => {
+      grid.appendChild(makeTemplateRow(di, ii, item));
+    });
+
+    // Add row
+    const addRow = document.createElement('div');
+    addRow.className = 'template-add-row';
+    addRow.id = `tadd_${di}`;
+    addRow.innerHTML = `
+      <select onchange="" id="taddsubj_${di}">
+        <option value="math">算数</option>
+        <option value="japanese">国語</option>
+        <option value="science">理科</option>
+        <option value="social">社会</option>
+        <option value="other">その他</option>
+      </select>
+      <input type="text" placeholder="宿題を追加..." id="taddtext_${di}">
+      <button class="small-btn btn-ghost" onclick="templateAddItem(${di})">＋</button>
+    `;
+    addRow.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') templateAddItem(di); });
+
+    section.appendChild(grid);
+    section.appendChild(addRow);
+    ed.appendChild(section);
+  });
+}
+
+function makeTemplateRow(di, ii, item) {
+  const row = document.createElement('div');
+  row.className = 'template-row';
+
+  const sel = document.createElement('select');
+  Object.entries(SUBJ).forEach(([k,v]) => {
+    const opt = document.createElement('option');
+    opt.value = k; opt.textContent = v.label;
+    if (k === item.subject) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', () => {
+    if (tempEditState[di] && tempEditState[di][ii]) tempEditState[di][ii].subject = sel.value;
+  });
+
+  const inp = document.createElement('input');
+  inp.type = 'text'; inp.value = item.text;
+  inp.addEventListener('input', () => {
+    if (tempEditState[di] && tempEditState[di][ii]) tempEditState[di][ii].text = inp.value;
+  });
+
+  const delBtn = document.createElement('button');
+  delBtn.className = 'template-item-del';
+  delBtn.textContent = '✕';
+  delBtn.addEventListener('click', () => templateDelItem(di, ii));
+
+  row.appendChild(sel);
+  row.appendChild(inp);
+  row.appendChild(delBtn);
+  return row;
+}
+
+function reRenderGrid(di) {
+  const grid = document.getElementById(`tgrid_${di}`);
+  if (!grid) return;
+  grid.innerHTML = '';
+  (tempEditState[di] || []).forEach((item, ii) => grid.appendChild(makeTemplateRow(di, ii, item)));
+}
+
+function templateAddItem(di) {
+  const textEl = document.getElementById(`taddtext_${di}`);
+  const subjEl = document.getElementById(`taddsubj_${di}`);
+  const text = textEl.value.trim();
+  if (!text) { textEl.focus(); return; }
+  if (!tempEditState[di]) tempEditState[di] = [];
+  tempEditState[di].push({ text, subject: subjEl.value });
+  textEl.value = '';
+  reRenderGrid(di);
+  textEl.focus();
+}
+
+function templateDelItem(di, ii) {
+  if (!tempEditState[di]) return;
+  tempEditState[di].splice(ii, 1);
+  reRenderGrid(di);
+}
+
+// ===== LOAD TEMPLATE TO WEEK =====
+function loadTemplateToWeek() {
+  const wd = getWeekData();
+  let added = 0;
+  DAYS.forEach((_, di) => {
+    const tmpl = state.template[di] || [];
+    tmpl.forEach(item => {
+      // Only add if not already present (match by text+subject)
+      const exists = wd[di].some(t => t.text === item.text && t.subject === item.subject);
+      if (!exists) {
+        wd[di].push({ id: nextId++, text: item.text, subject: item.subject, done: false });
+        added++;
+      }
+    });
+  });
+  save(); renderTabs(); renderList();
+  if (added > 0) showToast(`📋 ${added}件の宿題をテンプレートから読み込みました！`);
+  else showToast('すでにテンプレートの宿題は追加済みです');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  let t = document.getElementById('toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast';
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2d2540;color:white;padding:10px 20px;border-radius:20px;font-size:0.85rem;font-weight:700;z-index:9999;opacity:0;transition:opacity 0.3s;white-space:nowrap;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.style.opacity = '0', 2500);
+}
+
+// ===== CONFETTI =====
+function confetti() {
+  const layer = document.getElementById('confettiLayer');
+  layer.innerHTML = '';
+  const items = ['🌸','⭐','🎉','✨','💮','🌟','🎊','🌼','🌺'];
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement('div');
+    el.className = 'cp';
+    el.textContent = items[Math.floor(Math.random()*items.length)];
+    el.style.left = Math.random()*100+'vw';
+    el.style.fontSize = (1+Math.random()*0.8)+'rem';
+    const dur = 1.4+Math.random()*1.6;
+    el.style.animation = `fall-c ${dur}s linear forwards`;
+    el.style.animationDelay = Math.random()*0.6+'s';
+    layer.appendChild(el);
+    setTimeout(()=>el.remove(),(dur+0.7)*1000);
+  }
+}
+
+// ===== UTILS =====
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ===== PIN / CHILD LOCK =====
+const DEFAULT_PIN = '1234';
+let pinBuffer = '';
+let pinMode = 'verify'; // 'verify' | 'set_new1' | 'set_new2'
+let pinNewFirst = '';
+let pinCallback = null;
+
+function getPin() {
+  return localStorage.getItem('juku_pin') || DEFAULT_PIN;
+}
+function setPin(p) {
+  localStorage.setItem('juku_pin', p);
+}
+
+function openPinModal(callback) {
+  pinBuffer = '';
+  pinMode = 'verify';
+  pinCallback = callback;
+  document.getElementById('pinTitle').textContent = '保護者用パスワード';
+  document.getElementById('pinSub').textContent = '4桁の暗証番号を入力してね';
+  document.getElementById('pinError').textContent = '';
+  updatePinDots();
+  document.getElementById('pinModal').classList.add('show');
+}
+
+function closePinModal() {
+  document.getElementById('pinModal').classList.remove('show');
+  pinBuffer = '';
+  pinCallback = null;
+}
+
+function pinInput(d) {
+  if (pinBuffer.length >= 4) return;
+  pinBuffer += d;
+  updatePinDots();
+  if (pinBuffer.length === 4) {
+    setTimeout(() => handlePinComplete(), 150);
+  }
+}
+
+function pinDelete() {
+  pinBuffer = pinBuffer.slice(0, -1);
+  updatePinDots();
+  document.getElementById('pinError').textContent = '';
+}
+
+function updatePinDots() {
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById('pd' + i);
+    dot.className = 'pin-dot' + (i < pinBuffer.length ? ' filled' : '');
+  }
+}
+
+function handlePinComplete() {
+  if (pinMode === 'verify') {
+    if (pinBuffer === getPin()) {
+      const cb = pinCallback;
+      closePinModal();
+      if (cb) cb();
+    } else {
+      showPinError('暗証番号がちがいます');
+    }
+  } else if (pinMode === 'set_new1') {
+    pinNewFirst = pinBuffer;
+    pinBuffer = '';
+    updatePinDots();
+    pinMode = 'set_new2';
+    document.getElementById('pinTitle').textContent = 'もう一度入力';
+    document.getElementById('pinSub').textContent = '確認のためもう一度入力してね';
+    document.getElementById('pinError').textContent = '';
+  } else if (pinMode === 'set_new2') {
+    if (pinBuffer === pinNewFirst) {
+      setPin(pinBuffer);
+      closePinModal();
+      showToast('🔒 暗証番号を変更しました！');
+    } else {
+      showPinError('番号がちがいます。最初からやり直してね');
+      setTimeout(() => {
+        pinBuffer = '';
+        pinNewFirst = '';
+        pinMode = 'set_new1';
+        document.getElementById('pinTitle').textContent = '新しい暗証番号';
+        document.getElementById('pinSub').textContent = '新しい4桁の番号を入力してね';
+        document.getElementById('pinError').textContent = '';
+        updatePinDots();
+      }, 1000);
+    }
+  }
+}
+
+function showPinError(msg) {
+  document.getElementById('pinError').textContent = msg;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('pd' + i).className = 'pin-dot error';
+  }
+  setTimeout(() => {
+    pinBuffer = '';
+    updatePinDots();
+    document.getElementById('pinError').textContent = '';
+  }, 800);
+}
+
+function startChangePin() {
+  // First verify current PIN, then set new
+  pinBuffer = '';
+  pinMode = 'verify';
+  pinCallback = () => {
+    // After verifying, switch to set mode
+    pinBuffer = '';
+    pinMode = 'set_new1';
+    document.getElementById('pinTitle').textContent = '新しい暗証番号';
+    document.getElementById('pinSub').textContent = '新しい4桁の番号を入力してね';
+    document.getElementById('pinError').textContent = '';
+    updatePinDots();
+    document.getElementById('pinModal').classList.add('show');
+  };
+  document.getElementById('pinTitle').textContent = '現在の暗証番号';
+  document.getElementById('pinSub').textContent = '現在の4桁の番号を入力してね';
+  document.getElementById('pinError').textContent = '';
+  updatePinDots();
+}
+
+
+// ===== CALENDAR =====
+let calYear  = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+
+function openCalModal() {
+  calYear  = new Date().getFullYear();
+  calMonth = new Date().getMonth();
+  renderCalendar();
+  document.getElementById('calModal').classList.add('show');
+}
+function closeCalModal() {
+  document.getElementById('calModal').classList.remove('show');
+}
+function calCloseIfOverlay(e) {
+  if (e.target === document.getElementById('calModal')) closeCalModal();
+}
+function calChangeMonth(dir) {
+  calMonth += dir;
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0;  calYear++; }
+  renderCalendar();
+}
+
+function buildDayStats() {
+  const stats = {};
+  Object.entries(state.data).forEach(([weekKey, weekDays]) => {
+    const yr = parseInt(weekKey.slice(1,5));
+    const mo = parseInt(weekKey.slice(5,7)) - 1;
+    const dy = parseInt(weekKey.slice(7,9));
+    const monday = new Date(yr, mo, dy);
+    Object.entries(weekDays).forEach(([dayIdx, tasks]) => {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + parseInt(dayIdx));
+      const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      if (tasks && tasks.length > 0) {
+        stats[key] = { total: tasks.length, done: tasks.filter(t => t.done).length };
+      }
+    });
+  });
+  return stats;
+}
+
+function renderCalendar() {
+  const stats = buildDayStats();
+  const today = new Date();
+  const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+
+  document.getElementById('calTitle').textContent = `${calYear}年 ${calMonth+1}月`;
+
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell empty';
+    grid.appendChild(cell);
+  }
+
+  let fullDays = 0, partialDays = 0, totalTaskDays = 0;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateKey = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow = new Date(calYear, calMonth, d).getDay();
+    const s = stats[dateKey];
+    const cell = document.createElement('div');
+
+    let cls = 'cal-cell';
+    if (dow === 0) cls += ' sun-cell';
+    if (dow === 6) cls += ' sat-cell';
+    if (dateKey === todayKey) cls += ' today-cell';
+
+    let mark = '';
+    if (s && s.total > 0) {
+      cls += ' has-tasks';
+      totalTaskDays++;
+      if (s.done === s.total)  { cls += ' full-done';    mark = '💮'; fullDays++; }
+      else if (s.done > 0)     { cls += ' partial-done'; mark = '✨'; partialDays++; }
+      else                      { mark = '📝'; }
+    }
+
+    cell.className = cls;
+    cell.innerHTML = `<span class="cal-day-num">${d}</span><span class="cal-mark">${mark}</span>`;
+    grid.appendChild(cell);
+  }
+
+  const statsEl = document.getElementById('calMonthStats');
+  if (totalTaskDays === 0) {
+    statsEl.innerHTML = '<div class="stat-label">この月の記録はまだないよ</div>';
+  } else {
+    statsEl.innerHTML =
+      '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">' +
+      '<div><div class="stat-num">💮 ' + fullDays + '</div><div class="stat-label">全完了の日</div></div>' +
+      '<div><div class="stat-num">✨ ' + partialDays + '</div><div class="stat-label">途中の日</div></div>' +
+      '<div><div class="stat-num">📝 ' + totalTaskDays + '</div><div class="stat-label">宿題があった日</div></div>' +
+      '</div>';
+  }
+}
+
+
+renderWeekLabel();
+renderTabs();
+renderList();
+</script>
+</body>
+</html>
