@@ -584,6 +584,7 @@ body {
   <div class="header-btns">
     <button class="icon-btn" onclick="openPinModal(function(){openTemplateModal();})">⚙️ テンプレ</button>
     <button class="icon-btn" onclick="openPinModal(function(){loadTemplateToWeek();})">📋 テンプレ読込</button>
+    <button class="icon-btn" style="background:rgba(255,100,100,0.25);border-color:rgba(255,150,150,0.5);" onclick="openPinModal(function(){openResetModal();})">🗑️ リセット</button>
   </div>
 </div>
 
@@ -655,6 +656,30 @@ body {
     </div>
     <div class="template-hint">
       固定の宿題は <button onclick="openPinModal(function(){openTemplateModal();})">テンプレート</button> に登録しよう
+    </div>
+  </div>
+</div>
+
+
+<!-- RESET MODAL -->
+<div class="modal-overlay" id="resetModal" onclick="resetCloseIfOverlay(event)">
+  <div class="modal-sheet" style="max-height:50vh;">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🗑️ データリセット</div>
+    <p style="font-size:0.85rem;color:var(--text-mid);margin-bottom:20px;line-height:1.6;">
+      以下のデータを全て削除します。<br>この操作は元に戻せません！
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+      <label style="display:flex;align-items:center;gap:10px;font-size:0.9rem;font-weight:700;cursor:pointer;">
+        <input type="checkbox" id="resetTemplate" checked style="width:18px;height:18px;"> テンプレート（固定の宿題）
+      </label>
+      <label style="display:flex;align-items:center;gap:10px;font-size:0.9rem;font-weight:700;cursor:pointer;">
+        <input type="checkbox" id="resetProgress" checked style="width:18px;height:18px;"> 全週の進捗データ
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="small-btn btn-ghost" onclick="closeResetModal()">キャンセル</button>
+      <button class="small-btn btn-danger" onclick="executeReset()">🗑️ リセットする</button>
     </div>
   </div>
 </div>
@@ -1268,6 +1293,38 @@ function startChangePin() {
   updatePinDots();
 }
 
+
+
+// ===== RESET =====
+function openResetModal() {
+  document.getElementById('resetTemplate').checked = true;
+  document.getElementById('resetProgress').checked = true;
+  document.getElementById('resetModal').classList.add('show');
+}
+function closeResetModal() {
+  document.getElementById('resetModal').classList.remove('show');
+}
+function resetCloseIfOverlay(e) {
+  if (e.target === document.getElementById('resetModal')) closeResetModal();
+}
+function executeReset() {
+  const resetTmpl = document.getElementById('resetTemplate').checked;
+  const resetProg = document.getElementById('resetProgress').checked;
+
+  if (resetTmpl) {
+    state.template = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
+  }
+  if (resetProg) {
+    state.data = {};
+  }
+
+  save();
+  closeResetModal();
+  renderWeekLabel();
+  renderTabs();
+  renderList();
+  showToast('🗑️ データをリセットしました！');
+}
 
 // ===== CALENDAR =====
 let calYear  = new Date().getFullYear();
