@@ -1028,21 +1028,27 @@ function templateDelItem(di, ii) {
 // ===== LOAD TEMPLATE TO WEEK =====
 function loadTemplateToWeek() {
   const wd = getWeekData();
-  let added = 0;
+
   DAYS.forEach((_, di) => {
     const tmpl = state.template[di] || [];
-    tmpl.forEach(item => {
-      // Only add if not already present (match by text+subject)
-      const exists = wd[di].some(t => t.text === item.text && t.subject === item.subject);
-      if (!exists) {
-        wd[di].push({ id: nextId++, text: item.text, subject: item.subject, done: false });
-        added++;
-      }
+    // 完了済みのタスクはそのまま残す
+    const doneTasks = wd[di].filter(t => t.done);
+    // テンプレートから新しいリストを作成（未完了としてリセット）
+    const newTasks = tmpl.map(item => {
+      // 完了済みの中に同じ宿題があればそのまま使う
+      const doneMatch = doneTasks.find(t => t.text === item.text && t.subject === item.subject);
+      if (doneMatch) return doneMatch;
+      return { id: nextId++, text: item.text, subject: item.subject, done: false };
     });
+    // 完了済みでテンプレートにない独自タスクも残す
+    const extraDone = doneTasks.filter(t =>
+      !tmpl.some(item => item.text === t.text && item.subject === t.subject)
+    );
+    wd[di] = [...newTasks, ...extraDone];
   });
+
   save(); renderTabs(); renderList();
-  if (added > 0) showToast(`📋 ${added}件の宿題をテンプレートから読み込みました！`);
-  else showToast('すでにテンプレートの宿題は追加済みです');
+  showToast('📋 テンプレートで宿題リストを更新しました！');
 }
 
 // ===== TOAST =====
