@@ -868,6 +868,8 @@ function toggleTask(id) {
   renderList();
   const done = tasks.filter(t=>t.done).length;
   if (t.done && done === tasks.length) confetti();
+  // 進捗をスプレッドシートに同期（非同期・バックグラウンド）
+  syncProgressToSheet();
 }
 
 function delTask(e, id) {
@@ -913,9 +915,42 @@ function closeTemplateModal() {
 function closeIfOverlay(e) {
   if (e.target === document.getElementById('templateModal')) closeTemplateModal();
 }
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxnHhEyfHT-zgazJgDIKq1t2n3csRcTq5a_M2Tv9SBJHNJEXY6xqo_y5ukLfxxA0uhM/exec';
+
 function saveTemplate() {
   state.template = JSON.parse(JSON.stringify(tempEditState));
-  save(); closeTemplateModal();
+  save();
+  closeTemplateModal();
+  syncTemplateToSheet();
+}
+
+async function syncTemplateToSheet() {
+  showToast('☁️ スプレッドシートに保存中...');
+  try {
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'saveTemplate', data: state.template }),
+    });
+    showToast('✅ テンプレートをスプレッドシートに保存しました！');
+  } catch(e) {
+    showToast('⚠️ 通信エラー: ' + e.message);
+    console.error(e);
+  }
+}
+
+async function syncProgressToSheet() {
+  try {
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'saveProgress', data: state.data }),
+    });
+  } catch(e) {
+    console.error('進捗同期失敗:', e);
+  }
 }
 
 function renderTemplateEditor() {
@@ -1026,16 +1061,38 @@ function templateDelItem(di, ii) {
 }
 
 // ===== LOAD TEMPLATE TO WEEK =====
-function loadTemplateToWeek() {
-  const wd = getWeekData();
+async function loadTemplateToWeek() {
+  showToast('☁️ スプレッドシートから最新テンプレートを取得中...');
+  try {
+    const res = await fetch(GAS_URL + '?action=getTemplate');
+    const json = await res.json();
+    if (json.template) {
+      const normalized = {};
+      for (let i = 0; i < 7; i++) {
+        normalized[i] = Array.isArray(json.template[i]) ? json.template[i]
+          : (Array.isArray(json.template[String(i)]) ? json.template[String(i)] : []);
+      }
+      state.template = normalized;
+      save();
+      showToast('✅ 最新テンプレートを取得しました！');
+    } else {
+      showToast('📋 ローカルのテンプレートを使用します');
+    }
+  } catch(e) {
+    console.error('テンプレート取得失敗:', e);
+    showToast('⚠️ 取得失敗。ローカルのテンプレートを使用します');
+  }
+  applyTemplateToWeek();
+}
 
+function applyTemplateToWeek() {
+  const wd = getWeekData();
   DAYS.forEach((_, di) => {
     const tmpl = state.template[di] || [];
     // 完了済みのタスクはそのまま残す
     const doneTasks = wd[di].filter(t => t.done);
     // テンプレートから新しいリストを作成（未完了としてリセット）
     const newTasks = tmpl.map(item => {
-      // 完了済みの中に同じ宿題があればそのまま使う
       const doneMatch = doneTasks.find(t => t.text === item.text && t.subject === item.subject);
       if (doneMatch) return doneMatch;
       return { id: nextId++, text: item.text, subject: item.subject, done: false };
@@ -1046,7 +1103,6 @@ function loadTemplateToWeek() {
     );
     wd[di] = [...newTasks, ...extraDone];
   });
-
   save(); renderTabs(); renderList();
   showToast('📋 テンプレートで宿題リストを更新しました！');
 }
