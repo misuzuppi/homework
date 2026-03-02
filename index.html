@@ -583,6 +583,7 @@ body {
   <div class="app-title">📚 しゅくだい帳</div>
   <div class="header-btns">
     <button class="icon-btn" onclick="openPinModal(function(){openTemplateModal();})">⚙️ テンプレ</button>
+    <button class="icon-btn" onclick="openPinModal(function(){fetchTemplateFromSheet();})">☁️ テンプレ取得</button>
     <button class="icon-btn" onclick="openPinModal(function(){loadTemplateToWeek();})">📋 テンプレ読込</button>
     <button class="icon-btn" style="background:rgba(255,100,100,0.25);border-color:rgba(255,150,150,0.5);" onclick="openPinModal(function(){openResetModal();})">🗑️ リセット</button>
   </div>
@@ -1086,8 +1087,8 @@ function templateDelItem(di, ii) {
 }
 
 // ===== LOAD TEMPLATE TO WEEK =====
-async function loadTemplateToWeek() {
-  showToast('☁️ スプレッドシートから最新テンプレートを取得中...');
+async function fetchTemplateFromSheet() {
+  showToast('☁️ スプレッドシートからテンプレートを取得中...');
   try {
     const res = await fetch(GAS_URL + '?action=getTemplate');
     const json = await res.json();
@@ -1099,13 +1100,33 @@ async function loadTemplateToWeek() {
       }
       state.template = normalized;
       save();
-      showToast('✅ 最新テンプレートを取得しました！');
+      showToast('✅ テンプレートを取得しました！「テンプレ読込」で週に反映できます');
     } else {
-      showToast('📋 ローカルのテンプレートを使用します');
+      showToast('⚠️ スプレッドシートにテンプレートがありません');
     }
   } catch(e) {
     console.error('テンプレート取得失敗:', e);
-    showToast('⚠️ 取得失敗。ローカルのテンプレートを使用します');
+    showToast('⚠️ 取得失敗。ネットワークを確認してください');
+  }
+}
+
+async function loadTemplateToWeek() {
+  // まずスプレッドシートから最新テンプレを取得
+  showToast('☁️ 最新テンプレートを取得中...');
+  try {
+    const res = await fetch(GAS_URL + '?action=getTemplate');
+    const json = await res.json();
+    if (json.template) {
+      const normalized = {};
+      for (let i = 0; i < 7; i++) {
+        normalized[i] = Array.isArray(json.template[i]) ? json.template[i]
+          : (Array.isArray(json.template[String(i)]) ? json.template[String(i)] : []);
+      }
+      state.template = normalized;
+      save();
+    }
+  } catch(e) {
+    console.error('テンプレート取得失敗（ローカルで続行）:', e);
   }
   applyTemplateToWeek();
 }
