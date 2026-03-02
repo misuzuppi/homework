@@ -572,6 +572,75 @@ body {
   font-size: 0.75rem; color: var(--text-mid); margin-top: 2px;
 }
 
+
+/* ============ PROGRESS VIEW ============ */
+.progress-modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(30,20,50,0.5); z-index: 200;
+  align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.progress-modal-overlay.show { display: flex; }
+.progress-sheet {
+  background: white; width: 100%; max-width: 500px;
+  border-radius: 24px 24px 0 0;
+  padding: 20px 16px 32px;
+  max-height: 90vh; overflow-y: auto;
+  animation: slide-up 0.3s cubic-bezier(0.34,1.4,0.64,1);
+}
+.progress-day-block {
+  margin-bottom: 16px;
+}
+.progress-day-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.95rem; font-weight: 800;
+  color: var(--primary); padding: 6px 10px;
+  background: var(--primary-pale); border-radius: 8px;
+  margin-bottom: 6px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.progress-task-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; border-radius: 8px;
+  font-size: 0.85rem; font-weight: 600;
+  border: 1.5px solid var(--border);
+  margin-bottom: 4px; background: #fafafa;
+}
+.progress-task-row.done { background: #f0fff6; border-color: #a0ddb8; }
+.progress-task-row.done .prog-task-name { text-decoration: line-through; color: var(--text-light); }
+.prog-mark { font-size: 1.1rem; flex-shrink: 0; }
+.prog-task-name { flex: 1; }
+.prog-subj-tag {
+  font-size: 0.68rem; font-weight: 700; padding: 2px 7px;
+  border-radius: 10px; flex-shrink: 0;
+}
+.progress-empty {
+  text-align: center; padding: 40px 20px;
+  color: var(--text-light); font-size: 0.88rem;
+}
+.progress-week-nav {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 16px;
+}
+.progress-week-label {
+  font-weight: 800; font-size: 0.9rem; color: var(--primary);
+  min-width: 160px; text-align: center;
+}
+.progress-stats {
+  display: flex; gap: 10px; justify-content: center;
+  margin-bottom: 14px; flex-wrap: wrap;
+}
+.progress-stat {
+  background: var(--primary-pale); border-radius: 12px;
+  padding: 8px 14px; text-align: center;
+}
+.progress-stat .num {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.2rem; font-weight: 800; color: var(--primary);
+}
+.progress-stat .lbl { font-size: 0.68rem; color: var(--text-mid); }
+.prog-loading { text-align: center; padding: 30px; color: var(--text-light); font-size: 0.9rem; }
+
 </style>
 </head>
 <body>
@@ -582,6 +651,7 @@ body {
 <div class="app-header">
   <div class="app-title">📚 しゅくだい帳</div>
   <div class="header-btns">
+    <button class="icon-btn" onclick="openPinModal(function(){openProgressModal();})">👀 進捗確認</button>
     <button class="icon-btn" onclick="openPinModal(function(){openTemplateModal();})">⚙️ テンプレ</button>
     <button class="icon-btn" onclick="openPinModal(function(){fetchTemplateFromSheet();})">☁️ テンプレ取得</button>
     <button class="icon-btn" onclick="openPinModal(function(){loadTemplateToWeek();})">📋 テンプレ読込</button>
@@ -661,6 +731,26 @@ body {
   </div>
 </div>
 
+
+
+<!-- PROGRESS MODAL -->
+<div class="progress-modal-overlay" id="progressModal" onclick="progressCloseIfOverlay(event)">
+  <div class="progress-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">👀 子供の進捗確認</div>
+    <div class="progress-week-nav">
+      <button class="week-btn" onclick="progressChangeWeek(-1)">‹</button>
+      <div class="progress-week-label" id="progressWeekLabel"></div>
+      <button class="week-btn" onclick="progressChangeWeek(1)">›</button>
+    </div>
+    <div class="progress-stats" id="progressStats"></div>
+    <div id="progressContent"><div class="prog-loading">読み込み中...</div></div>
+    <div class="modal-footer">
+      <button class="small-btn btn-ghost" onclick="closeProgressModal()">閉じる</button>
+      <button class="small-btn btn-primary" onclick="refreshProgress()">🔄 更新</button>
+    </div>
+  </div>
+</div>
 
 <!-- RESET MODAL -->
 <div class="modal-overlay" id="resetModal" onclick="resetCloseIfOverlay(event)">
@@ -1090,7 +1180,7 @@ function templateDelItem(di, ii) {
 async function fetchTemplateFromSheet() {
   showToast('☁️ スプレッドシートからテンプレートを取得中...');
   try {
-    const res = await fetch(GAS_URL + '?action=getTemplate');
+    const res = await fetch(GAS_URL + '?action=getTemplate', {redirect: 'follow'});
     const json = await res.json();
     if (json.template) {
       const normalized = {};
@@ -1114,7 +1204,7 @@ async function loadTemplateToWeek() {
   // まずスプレッドシートから最新テンプレを取得
   showToast('☁️ 最新テンプレートを取得中...');
   try {
-    const res = await fetch(GAS_URL + '?action=getTemplate');
+    const res = await fetch(GAS_URL + '?action=getTemplate', {redirect: 'follow'});
     const json = await res.json();
     if (json.template) {
       const normalized = {};
@@ -1316,6 +1406,115 @@ function startChangePin() {
 
 
 
+
+// ===== PROGRESS VIEW (親用) =====
+let progressWeekOffset = 0;
+
+function openProgressModal() {
+  progressWeekOffset = 0;
+  document.getElementById('progressModal').classList.add('show');
+  refreshProgress();
+}
+function closeProgressModal() {
+  document.getElementById('progressModal').classList.remove('show');
+}
+function progressCloseIfOverlay(e) {
+  if (e.target === document.getElementById('progressModal')) closeProgressModal();
+}
+function progressChangeWeek(dir) {
+  progressWeekOffset += dir;
+  refreshProgress();
+}
+
+function getProgressWeekLabel(offset) {
+  const d = new Date();
+  d.setDate(d.getDate() - JS_TO_IDX[d.getDay()] + offset * 7);
+  const mon = new Date(d);
+  const sun = new Date(d); sun.setDate(sun.getDate() + 6);
+  const fmt = x => `${x.getMonth()+1}/${x.getDate()}`;
+  if (offset === 0) return `今週 (${fmt(mon)}〜${fmt(sun)})`;
+  if (offset === -1) return `先週 (${fmt(mon)}〜${fmt(sun)})`;
+  return `${fmt(mon)}〜${fmt(sun)}`;
+}
+
+function getProgressWeekKey(offset) {
+  const d = new Date();
+  d.setDate(d.getDate() - JS_TO_IDX[d.getDay()] + offset * 7);
+  return `w${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+}
+
+async function refreshProgress() {
+  document.getElementById('progressWeekLabel').textContent = getProgressWeekLabel(progressWeekOffset);
+  document.getElementById('progressContent').innerHTML = '<div class="prog-loading">📡 スプレッドシートから取得中...</div>';
+  document.getElementById('progressStats').innerHTML = '';
+
+  try {
+    const res = await fetch(GAS_URL + '?action=getProgress', {redirect: 'follow'});
+    const json = await res.json();
+
+    if (!json.progress) {
+      document.getElementById('progressContent').innerHTML = '<div class="progress-empty">データがありません</div>';
+      return;
+    }
+
+    const weekKey = getProgressWeekKey(progressWeekOffset);
+    const weekData = json.progress[weekKey];
+
+    if (!weekData) {
+      document.getElementById('progressContent').innerHTML = '<div class="progress-empty">📝 この週のデータはまだありません</div>';
+      return;
+    }
+
+    // Stats
+    let totalTasks = 0, doneTasks = 0;
+    for (let i = 0; i < 7; i++) {
+      const tasks = weekData[i] || weekData[String(i)] || [];
+      totalTasks += tasks.length;
+      doneTasks += tasks.filter(t => t.done).length;
+    }
+    const pct = totalTasks > 0 ? Math.round(doneTasks / totalTasks * 100) : 0;
+    document.getElementById('progressStats').innerHTML = `
+      <div class="progress-stat"><div class="num">${doneTasks}/${totalTasks}</div><div class="lbl">完了</div></div>
+      <div class="progress-stat"><div class="num">${pct}%</div><div class="lbl">達成率</div></div>
+      <div class="progress-stat"><div class="num">${totalTasks - doneTasks}</div><div class="lbl">残り</div></div>
+    `;
+
+    // Day blocks
+    const content_el = document.getElementById('progressContent');
+    content_el.innerHTML = '';
+
+    for (let i = 0; i < 7; i++) {
+      const tasks = weekData[i] || weekData[String(i)] || [];
+      if (tasks.length === 0) continue;
+
+      const done = tasks.filter(t => t.done).length;
+      const block = document.createElement('div');
+      block.className = 'progress-day-block';
+
+      const s = SUBJ;
+      block.innerHTML = `
+        <div class="progress-day-title">
+          <span>${DAY_NAMES_FULL[i]}</span>
+          <span>${done === tasks.length ? '💮 全完了！' : done + '/' + tasks.length}</span>
+        </div>
+        ${tasks.map(task => {
+          const subj = SUBJ[task.subject] || SUBJ.other;
+          return `<div class="progress-task-row ${task.done ? 'done' : ''}">
+            <span class="prog-mark">${task.done ? '💮' : '📝'}</span>
+            <span class="prog-task-name">${esc(task.text)}</span>
+            <span class="prog-subj-tag" style="background:var(--${task.subject === 'math' ? 'math' : task.subject === 'japanese' ? 'jp' : task.subject === 'science' ? 'sci' : task.subject === 'social' ? 'soc' : 'other'}-bg);color:var(--${task.subject === 'math' ? 'math' : task.subject === 'japanese' ? 'jp' : task.subject === 'science' ? 'sci' : task.subject === 'social' ? 'soc' : 'other'}-text)">${subj.label}</span>
+          </div>`;
+        }).join('')}
+      `;
+      content_el.appendChild(block);
+    }
+
+  } catch(e) {
+    console.error('進捗取得失敗:', e);
+    document.getElementById('progressContent').innerHTML = '<div class="progress-empty">⚠️ 取得に失敗しました。ネットワークを確認してください。</div>';
+  }
+}
+
 // ===== RESET =====
 function openResetModal() {
   document.getElementById('resetTemplate').checked = true;
@@ -1449,9 +1648,76 @@ function renderCalendar() {
 }
 
 
-renderWeekLabel();
-renderTabs();
-renderList();
+
+// ===== 起動時スプレッドシート同期 =====
+async function initSyncFromSheet() {
+  // まずローカルのデータで描画（素早く表示）
+  renderWeekLabel();
+  renderTabs();
+  renderList();
+
+  // バックグラウンドでスプレッドシートから最新データを取得
+  try {
+    const res = await fetch(GAS_URL + '?action=getProgress', {redirect: 'follow'});
+    const json = await res.json();
+
+    if (!json.progress || Object.keys(json.progress).length === 0) return;
+
+    let updated = false;
+
+    // スプレッドシートのデータをローカルにマージ
+    Object.entries(json.progress).forEach(([weekKey, weekDays]) => {
+      if (!state.data[weekKey]) {
+        state.data[weekKey] = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]};
+      }
+      for (let i = 0; i < 7; i++) {
+        const sheetTasks = weekDays[i] || weekDays[String(i)] || [];
+        if (sheetTasks.length === 0) continue;
+
+        const localTasks = state.data[weekKey][i] || [];
+
+        // スプレッドシートのタスクをベースに、ローカルの完了状態を優先してマージ
+        const merged = sheetTasks.map(sheetTask => {
+          const localMatch = localTasks.find(t =>
+            t.text === sheetTask.text && t.subject === sheetTask.subject
+          );
+          if (localMatch) {
+            // ローカルで完了済みならそちらを優先
+            return localMatch.done ? localMatch : { ...localMatch, done: sheetTask.done };
+          }
+          // ローカルにないタスク（親が追加したもの）は新規追加
+          return { id: nextId++, text: sheetTask.text, subject: sheetTask.subject, done: sheetTask.done };
+        });
+
+        // ローカルにあってスプレッドシートにないタスクも残す
+        const localOnly = localTasks.filter(lt =>
+          !sheetTasks.some(st => st.text === lt.text && st.subject === lt.subject)
+        );
+
+        const newList = [...merged, ...localOnly];
+
+        // 変化があれば更新
+        if (JSON.stringify(newList) !== JSON.stringify(localTasks)) {
+          state.data[weekKey][i] = newList;
+          updated = true;
+        }
+      }
+    });
+
+    if (updated) {
+      save();
+      renderTabs();
+      renderList();
+      showToast('☁️ 最新データを同期しました');
+    }
+  } catch(e) {
+    // 同期失敗してもローカルデータで続行
+    console.log('起動時同期スキップ（オフライン等）:', e.message);
+  }
+}
+
+// 起動時にスプレッドシートと同期
+initSyncFromSheet();
 </script>
 </body>
 </html>
